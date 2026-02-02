@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <p>page1</p>
+  </body>
+</html<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 360px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #444;
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      position: absolute;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #noBtn {
+      background: #ddd;
+      color: #333;
+      left: 50%;
+      top: 60px;
+      transform: translateX(-50%);
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #ff4d6d;
+      min-height: 24px;
+    }
+
+    /* YES SCREEN */
+    .yes-screen {
+      display: none;
+    }
+
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 18px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="main">
+  <h1>❤️ Priyanka(bangali)❤️</h1>
+  <p>Will you be my Valentine?</p>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙃</button>
+  </div>
+
+  <div id="message"></div>
+</div>
+
+<div class="container yes-screen" id="yesScreen">
+  <h1>💖 Yay! 💖</h1>
+  <p><strong>I knew Priyanka would say yes 💕</strong></p>
+  <p> 🤔 yes pe click kyu kiya batao ..batao aab darling ko 🫣 ..ho gya nah pyarr or karo mujhse baatein 😎🫣✨</p>
+  <p><strong>Now we can go on a pani puri date 😋</strong></p>
+  <p style="margin-top:15px;">তোমার সাথেই সব সুন্দর লাগে ❤️</p>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const message = document.getElementById("message");
+  const yesBtn = document.getElementById("yesBtn");
+  const main = document.getElementById("main");
+  const yesScreen = document.getElementById("yesScreen");
+  const hearts = document.getElementById("hearts");
+
+  const noMessages = [
+    "Nice try 😄 but No isn’t allowed",
+    "Ei toh cholbe na 😌 Yes bole dao",
+    "Abar No? Heart ta bhalo nei 💔",
+    "Soch lo ache se 😉",
+    "No button ta decoration er jonno 😏",
+    "You know the answer is Yes 💕",
+    "Priyanka, Valentine without you is impossible 😤"
+  ];
+
+  noBtn.addEventListener("click", () => {
+    const randomMsg = noMessages[Math.floor(Math.random() * noMessages.length)];
+    message.textContent = randomMsg;
+
+    const moveX = Math.random() * 80 - 40;
+    const moveY = Math.random() * 40 - 20;
+
+    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+
+  yesBtn.addEventListener("click", () => {
+    main.style.display = "none";
+    yesScreen.style.display = "block";
+    startHearts();
+  });
+
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      hearts.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
